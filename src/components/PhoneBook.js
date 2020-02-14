@@ -8,7 +8,6 @@ export default class PhoneBook extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
     this.props.onAddContact(this.state.name, this.state.number);
     this.setState({ name: "", number: "" });
   };

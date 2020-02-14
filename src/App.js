@@ -19,8 +19,6 @@ export default class App extends Component {
     }
   }
   componentDidUpdate(prevProps, prevState) {
-    console.log("componentDidUpdate");
-
     if (prevState.contacts !== this.state.contacts) {
       localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
     }
@@ -32,7 +30,7 @@ export default class App extends Component {
       name,
       number
     };
-    const contactCheck = this.state.contacts.find(
+    const contactCheck = this.state.contacts.some(
       contact => contact.name === name
     );
     if (contactCheck) {
@@ -54,9 +52,11 @@ export default class App extends Component {
   removeContact = contactId => {
     this.setState(prevState => {
       return {
-        contacts: prevState.contacts.filter(contact => contact.id !== contactId)
+         contacts: prevState.contacts.filter(contact => contact.id !== contactId)
       };
+      
     });
+    this.setState({ filter:'' });
   };
 
   visibleContacts = () => {
